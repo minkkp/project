@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.core.paginator import Paginator
 from .models import *
 from .forms import *
@@ -32,8 +32,27 @@ def post(request):
     
 def detail(request,pk):
     board = Board.objects.get(id=pk)
-    context = {'board':board}
+    comments = Comment.objects.filter(board=pk)
+    page = request.GET.get('page','1')
+    paginator = Paginator(comments,'3')
+    context = {'board':board,
+               'page_obj':paginator.page(page)}
+
     return render(request,'board/detail.html',context)
+
+def comment(request,pk):
+    # if request.user.is_authenticated: 
+    board = get_object_or_404(Board, pk=pk)
+    content = request.POST['content']
+    comment = Comment(
+            user = request.user,
+            content = content,
+            board = board,
+    )
+    comment.save()
+    return redirect('board:detail',pk)
+
+    # return redirect('accounts:login')
 
 def update(request):
     pass
