@@ -1,5 +1,14 @@
-{% extends 'base.html' %}
+{% extends 'base_main.html' %}
 
+{% load static %}
 {% block content %}
-메인입니다
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+<div class="main_outer">
+    <div class="border border-3 border-secondary rounded-4 main_inner_1">
+        <div class="main_inner_2">
+                <button class="btn btn-primary main_button">사진 불러오기</button>
+        </div>
+    </div>
+</div>
 {% endblock %}
