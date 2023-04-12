@@ -1,1 +1,27 @@
-detail인데요
+{% extends 'base_main.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/detail.css' %}">
+
+<div class="detail_outer">
+    <p class="detail_label">Q&A게시판</p>
+    <div class="border border-3 border-secondary rounded-4 detail_inner_1">
+            <div class="detail_inner_2">
+                <hr>
+                <p style="font-size:20px; font-weight:bold;">{{board.title}}</p>
+                <hr>
+                <p style="text-align:left; height:30%">{{board.content}}</p>    
+                <hr>
+                <div>
+                    <input type="text" class="detail_content" name="title" maxlength="20" required="" id="id_title" placeholder="댓글을 입력해주세요">
+                    <input type="submit" class="btn btn-secondary detail_button" value="작성"></button>
+                </div>
+            </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+

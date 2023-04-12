@@ -10,21 +10,19 @@
             <table class="table">
                 <thead class="table-dark">
                     <tr>
-                        <th>글번호</th>
+                        <th>번호</th>
                         <th>제목</th>
-                        <th>내용</th>
                         <th>작성자</th>
                         <th>작성일자</th>
                     </tr>
                 </thead>
-                    {% for board_list in page_obj %}
+                    {% for board in page_obj %}
                     <tbody>
-                        <tr>
-                            <td>{{ board_list.pk }}</td>
-                            <td>{{ board_list.title }}</td>
-                            <td>{{ board_list.content }}</td>       
-                            <td>#</td>
-                            <td>#</td>
+                        <tr style='cursor:pointer;' onmouseover="this.style.background='gray'" onmouseout="this.style.background='white'" onclick="location.href='{% url 'board:detail' board.pk %}'">
+                            <td style="width:10%">{{ board.pk }}</td>
+                            <td style="width:40%">{{ board.title }}</td>
+                            <td style="width:20%">#</td>
+                            <td style="width:30%">#</td>
                         </tr>
                     </tbody>
                     {% endfor %}
@@ -69,7 +67,7 @@
                         <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
                     </li>
                     {% endif %}
-                    <button style="position: absolute; left: 78%;" type="button" class="btn btn-primary">작성하기</button>
+                    <button style="position: absolute; left: 78%;" type="button" class="btn btn-primary" onclick="location.href='{% url 'board:post' %}'">작성하기</button>
                 </ul>
                 
             </div>

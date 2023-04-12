@@ -4,9 +4,9 @@ from .models import *
 from .forms import *
 
 def index(request):
-    board_list = Board.objects.all()
+    board_list = Board.objects.all().order_by('-id')
     page = request.GET.get('page','1')
-    paginator = Paginator(board_list,'6')
+    paginator = Paginator(board_list,'7')
 
     context = {
         'page_obj':paginator.page(page)
@@ -15,15 +15,14 @@ def index(request):
 
 def post(request):
     if request.method=='POST':
-        for i in range(10):
-            title = request.POST['title']
-            content = request.POST['content']
-            board = Board(
-                title = title,
-                content = content
-            )
-            board.save()
-        return redirect('board:detail')
+        title = request.POST['title']
+        content = request.POST['content']
+        board = Board(
+            title = title,
+            content = content
+        )
+        board.save()
+        return redirect('board:detail',board.pk)
     else:
         boardForm = BoardForm
         context = {
@@ -31,7 +30,10 @@ def post(request):
         }
         return render(request,'board/post.html',context)
     
-def detail(request):
-    return render(request,'board/detail.html')
+def detail(request,pk):
+    board = Board.objects.get(id=pk)
+    context = {'board':board}
+    return render(request,'board/detail.html',context)
+
 def update(request):
     pass
