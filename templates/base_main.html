@@ -24,13 +24,13 @@
                 <a class="nav-link main_font_color" aria-current="page" href="{% url 'main:main' %}">메인</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link main_font_color" href="{% url 'main:board' %}">Q&A게시판</a>
+                <a class="nav-link main_font_color" href="{% url 'board:index' %}">Q&A게시판</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link main_font_color" href="{% url 'accounts:update' %}">마이페이지</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link main_font_color" href="{% url 'accounts:login' %}">로그아웃</a>
+                <a class="nav-link main_font_color" href="{% url 'accounts:logout' %}">로그아웃</a>
               </li>
             </ul>
           </div>

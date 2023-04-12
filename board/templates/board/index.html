@@ -1,0 +1,80 @@
+{% extends 'base_main.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+
+<div class="index_outer">
+    <p class="index_label">Q&A게시판</p>
+    <div class="border border-3 border-secondary rounded-4 index_inner_1">
+        <div class="index_inner_2">
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>글번호</th>
+                        <th>제목</th>
+                        <th>내용</th>
+                        <th>작성자</th>
+                        <th>작성일자</th>
+                    </tr>
+                </thead>
+                    {% for board_list in page_obj %}
+                    <tbody>
+                        <tr>
+                            <td>{{ board_list.pk }}</td>
+                            <td>{{ board_list.title }}</td>
+                            <td>{{ board_list.content }}</td>       
+                            <td>#</td>
+                            <td>#</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+            </table>         
+                
+            <div id="paging">
+                <ul class="pagination justify-content-center" style="margin-top: 2rem; display:flex;">
+                    <!-- 이전페이지 -->
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?&page={{ page_obj.previous_page_number }}">이전</a>
+                        <!-- href로 뎁스 설정 -->
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+                    </li>
+                    {% endif %}
+
+
+                    <!-- 페이지리스트 -->
+                    {% for page_number in page_obj.paginator.page_range %}
+                    {% if page_number == page_obj.number %}
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link" href="?&page={{ page_number }}">{{ page_number }}</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="?&page={{ page_number }}">{{ page_number }}</a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+
+
+                    <!-- 다음페이지 -->
+                    {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?&page={{ page_obj.next_page_number }}">다음</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+                    </li>
+                    {% endif %}
+                    <button style="position: absolute; left: 78%;" type="button" class="btn btn-primary">작성하기</button>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

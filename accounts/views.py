@@ -32,3 +32,9 @@ def signup(request):
     else:
         form = UserCreationForm
         return render(request,'accounts/signup.html',{'form':form})
+
+def update(request):
+    pass
+
+def logout(request):
+    pass
