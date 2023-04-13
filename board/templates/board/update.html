@@ -1,0 +1,26 @@
+{% extends 'base_main.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/post.css' %}">
+
+<div class="post_outer">
+    <p class="post_label">Q&A게시판</p>
+    <div class="border border-3 border-secondary rounded-4 post_inner_1">
+            <div class="post_inner_2">
+                <form action="{% url 'board:post' %}" method="POST">
+                {% csrf_token %}
+                <input type="text" class="post_title" name="title" maxlength="20" required="" id="id_title" placeholder="제목을 입력하세요">
+                <hr>
+                <textarea class="post_content" name="content" cols="40" rows="13" required="" id="id_content" placeholder="내용을 입력하세요"></textarea>
+                <button type="button" class="btn btn-secondary post_button" onclick="location.href='{% url 'board:detail' board.pk %}'">수정하기</button>
+                <button type="submit" class="btn btn-primary post_button">삭제하기</button>
+                </form>
+            </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+

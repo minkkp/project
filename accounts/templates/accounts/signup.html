@@ -1,31 +1,33 @@
 {% extends 'base_accounts.html' %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/accounts/signup.css' %}">
 
 <div class="signup_outer">
     <p class="signup_label">회원가입</p>
     <div class="border border-3 border-primary rounded-4 signup_inner_1">
         <form method="POST">
             <div class="signup_inner_2">
+
                 {% csrf_token %}
-                <input class="signup_input" name="username" type="text" placeholder="아이디">
+                <input class="signup_input" name="user_id" type="text" placeholder="아이디">
                 <br><br><br>
                 <input class="signup_input" name="password_1" type="password" placeholder="비밀번호">
                 <br><br><br>
                 <input class="signup_input" name="password_2" type="password" placeholder="비밀번호 확인">
                 <br><br><br>
-                <select class="signup_select" name="district">
-                    <option value="seoul">서울시</option>
-                    <option value="busan">부산시</option>
+                <select class="signup_select" name="user_area">
+                    <option value="서울시">서울시</option>
+                    <option value="부산시">부산시</option>
                 </select>
                 <br><br><br>
-                <select class="signup_select" name="residence">
-                    <option value="1">단독주택</option>
-                    <option value="2">공동주택</option>
+                <select class="signup_select" name="user_living">
+                    <option value="단독">단독주택</option>
+                    <option value="공동">공동주택</option>
                 </select>
                 <br><br><br>
                 <input type="submit" class="btn btn-primary signup_input" value="가입하기">
+
             </form>
         </div>
     </div>

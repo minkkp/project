@@ -2,11 +2,11 @@
 
 {% load static %}
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/accounts/login.css' %}">
 
 <div class="login_outer">
     <div class="border border-3 border-primary rounded-4 login_inner_1">
-        <form method="POST">
+        <form action="{% url 'main:main' %}" method="POST">
             <div class="login_inner_2">
                 {% csrf_token %}
                 <input class="login_input" name="username" type="text" placeholder="아이디">

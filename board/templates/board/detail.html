@@ -7,21 +7,22 @@
     <p class="detail_label">Q&A게시판</p>
     <div class="border border-3 border-secondary rounded-4 detail_inner_1">
             <div class="detail_inner_2">
-                <p style="font-size:5px; text-align:left;">작성자 :</p>
-                <p style="font-size:5px; text-align:left;">작성일자 :</p>
-                
-                <hr>
-                <p style="text-align:left; font-size:20px; font-weight:bold;">{{board.title}}</p>
-                <hr>
-                <p style="text-align:left; height:20%">{{board.content}}</p>    
-                <hr>
+                <div class="detail_title">
+                    <div style="width:33%; height:55px;">
+                    </div>
+                    <div style="width:33%; margin-top:3%">
+                        <span style="text-align:left; font-size:23px; font-weight:bold;">{{board.title}}</span>
+                    </div>   
+                </div>
+
+                <p class="detail_title"style="text-align:left; font-size:18px; height:20%">{{board.content}}</p>    
 
                 <div>
                     <table class="table">
                     <tbody>
                     {% for commments in page_obj %}
                         <tr>
-                            <td style="text-align:left">{{ commments.user}} | {{commments.content}}</td>
+                            <td style="text-align:left"><img style="width:15px; height:15px;" src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png"><span style="font-size:25; font-weight:bold"> {{ commments.user}}</span><br>&nbsp;&nbsp;&nbsp;&nbsp;{{commments.content}}</td>
 
                         </tr>
                     {% endfor %}
@@ -29,7 +30,7 @@
                 </table>
                     <form action="{% url 'board:comment' board.pk %}" method="POST">
                         {% csrf_token %}
-                        <input type="text" class="detail_content" name="content" maxlength="20" required="" id="id_title" placeholder="댓글을 남겨보세요">
+                        <input type="text" class="detail_comment" name="content" maxlength="20" required="" id="id_title" placeholder="댓글을 남겨보세요">
                         <input type="submit" class="btn btn-secondary detail_button" value="작성"></button>
                     </form>
                     <div id="paging">
@@ -77,8 +78,8 @@
 
 
                 </div>
-                <button style="width:18%" type="button" class="btn btn-secondary detail_button" onclick="location.href='javascript:window.history.back();'">뒤로가기</button>
-                <button style="width:18%" type="button" class="btn btn-secondary detail_button" onclick="location.href='javascript:window.history.back();'">삭제하기</button>
+                <button style="width:18%" type="button" class="btn btn-secondary detail_button" onclick="location.href='{% url 'board:index'%}'">뒤로가기</button>
+                <button style="width:18%" type="button" class="btn btn-secondary detail_button" onclick="location.href='javascript:window.history.back();'">수정하기</button>
             </div>
     </div>
 </div>

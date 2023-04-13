@@ -1,0 +1,17 @@
+{% extends 'base_accounts.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/accounts/update.css' %}">
+
+<div class="update_outer">
+    <p class="update_label">회원정보 수정</p>
+    <div class="border border-3 border-primary rounded-4 update_inner_1">
+        <form method="POST">
+            <div class="update_inner_2">
+                {% csrf_token %}
+                {{form.as_p}}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

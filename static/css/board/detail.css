@@ -29,28 +29,37 @@ html,body{
   }
 
 .detail_inner_2 {
-    margin-top: 2%;
+    margin-top: 1%;
     margin-left: auto;
     margin-right: auto;
     width: 65%;
     height: 100%;
 }
 
-.detail_content{
-    border-left-width:0;
-    border-right-width:0;
-    border-top-width:0;
+.detail_comment{
+    border-left-width:0px;
+    border-right-width:0px;
+    border-top-width:0px;
     border-bottom-width:2px;
     width: 78%;
     height: 37px;
 }
-
 .detail_button{
     width: 15%;
     height: 30px;
     padding-bottom: 28px;
 }
 
+.detail_title{
+    border: 1px solid black;
+    border-left-width:0;
+    border-right-width:0;
+    border-top-width:0;
+    border-bottom-width:1px;
+    width: 100%;
+    display: flex;
+    
+}
 .main_font_color{
     color: white;
     font-size: 20px;
