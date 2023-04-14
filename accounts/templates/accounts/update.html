@@ -6,10 +6,44 @@
 <div class="update_outer">
     <p class="update_label">회원정보 수정</p>
     <div class="border border-3 border-primary rounded-4 update_inner_1">
-        <form method="POST">
-            <div class="update_inner_2">
+        <div class="update_inner_2">        
+            <form action="{% url 'accounts:update' %}" method="POST">            
                 {% csrf_token %}
-                {{form.as_p}}
+                <p class="update_columns">ID</p>
+                <input style="border-bottom-width:0;"class="update_input" type="text" name="user_id" placeholder={{user}} disabled>
+                <br><br>
+
+                {% comment %} <p class="update_columns">패스워드</p>
+                <input class="update_input" name="password_1" type="password" placeholder="비밀번호">
+                <br><br>
+
+                <p class="update_columns">패스워드 확인</p>
+                <input class="update_input" name="password_2" type="password" placeholder="비밀번호 확인">
+                <br><br><br>  {% endcomment %}
+
+                <p class="update_columns">거주지역</p>
+                <select class="update_select" name="user_area" maxlength="15" id="id_user_area">
+                    <option value={{form.user_area.value}}>{{form.user_area.value}}</option>
+                    {% for area in area_list %}
+                        {% if area != form.user_area.value %}
+                            <option value="{{area}}">{{area}}</option>
+                        {% endif %}
+                    {% endfor %} 
+                </select>
+                <br><br>
+
+                <p class="update_columns">거주형태</p>
+                <select class="update_select" name="user_living" maxlength="15" id="id_user_living">
+                    <option value={{form.user_living.value}}>{{form.user_living.value}}</option>
+                    {% for living in living_list %}
+                        {% if living != form.user_living.value %}
+                            <option value="{{living}}">{{living}}</option>
+                        {% endif %}
+                    {% endfor %} 
+                </select>
+
+                <br><br>
+                <input type="submit" class="btn btn-primary update_button" value="수정하기">
             </form>
         </div>
     </div>

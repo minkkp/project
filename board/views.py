@@ -24,11 +24,7 @@ def post(request):
         board.save()
         return redirect('board:detail',board.pk)
     else:
-        boardForm = BoardForm
-        context = {
-            'boardForm':boardForm,
-        }
-        return render(request,'board/post.html',context)
+        return render(request,'board/post.html')
     
 def detail(request,pk):
     board = Board.objects.get(id=pk)

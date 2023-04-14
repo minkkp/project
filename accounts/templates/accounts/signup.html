@@ -6,8 +6,9 @@
 <div class="signup_outer">
     <p class="signup_label">회원가입</p>
     <div class="border border-3 border-primary rounded-4 signup_inner_1">
-        <form method="POST">
-            <div class="signup_inner_2">
+        <div class="signup_inner_2">
+            <form method="POST">
+            
 
                 {% csrf_token %}
                 <input class="signup_input" name="user_id" type="text" placeholder="아이디">
@@ -19,6 +20,7 @@
                 <select class="signup_select" name="user_area">
                     <option value="서울시">서울시</option>
                     <option value="부산시">부산시</option>
+                    <option value="부산시">고양시</option>
                 </select>
                 <br><br><br>
                 <select class="signup_select" name="user_living">

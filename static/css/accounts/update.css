@@ -19,7 +19,6 @@ html,body{
 }
 
 .update_inner_1 {
-    text-align: center;
     position: absolute;
     width: 24%;
     height: 54%;
@@ -29,7 +28,6 @@ html,body{
   }
 
 .update_inner_2 {
-    text-align: center;
     position: absolute;
     width: 100%;
     top: 45%;
@@ -40,7 +38,7 @@ html,body{
 .update_input{
     position: absolute;
     width: 70%;
-    height: 14%;
+    height: 8%;
     margin-bottom: 10px;
     left: 50%;   
     transform: translate(-50%);
@@ -50,11 +48,10 @@ html,body{
     border-top-width:0;
     border-bottom-width:1;
 }
-
 .update_select{
     position: absolute;
     width: 70%;
-    height: 14%;
+    height: 7%;
     margin-bottom: 10px;
     left: 50%;   
     transform: translate(-50%);
@@ -63,4 +60,18 @@ html,body{
     border-right-width:0;
     border-top-width:0;
     border-bottom-width:2px;
+}
+.update_columns{
+    margin-left: 15%;
+    font-size: 12px;
+    font-weight: bold;
+    height: 1px;
+}
+
+.update_button{
+    position: absolute;
+    width: 70%;
+    height: 10%;
+    left: 50%;   
+    transform: translate(-50%);
 }
