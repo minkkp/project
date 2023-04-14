@@ -1,91 +1,101 @@
 {% extends 'base_main.html' %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/board/detail.css' %}">
-
-<div class="detail_outer">
-    <p class="detail_label">Q&A게시판</p>
-    <div class="border border-3 border-secondary rounded-4 detail_inner_1">
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'css/board/detail.css' %}">
+    <div class="detail_outer">
+        <p class="detail_label">Q&A게시판</p>
+        <div class="border border-3 border-secondary rounded-4 detail_inner_1">
             <div class="detail_inner_2">
                 <div class="detail_title">
-                    <div style="width:33%; height:55px;">
-                    </div>
+                    <div style="width:33%; height:55px;"></div>
                     <div style="width:33%; margin-top:3%">
-                        <span style="text-align:left; font-size:23px; font-weight:bold;">{{board.title}}</span>
-                    </div>   
+                        <span style="text-align:left; font-size:23px; font-weight:bold;">{{ board.title }}</span>
+                    </div>
                 </div>
-
-                <p class="detail_title"style="text-align:left; font-size:18px; height:20%">{{board.content}}</p>    
-
+                <p class="detail_title"
+                   style="text-align:left;
+                          font-size:18px;
+                          height:20%">{{ board.content }}</p>
                 <div>
                     <table class="table">
-                    <tbody>
-                    {% for commments in page_obj %}
-                        <tr>
-                            <td style="text-align:left"><img style="width:15px; height:15px;" src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png"><span style="font-size:25; font-weight:bold"> {{ commments.user}}</span><br>&nbsp;&nbsp;&nbsp;&nbsp;{{commments.content}}</td>
-
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                        <tbody>
+                            {% for commments in page_obj %}
+                                <tr>
+                                    <td style="text-align:left">
+                                        <img style="width:15px;
+                                                    height:15px"
+                                             src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png">
+                                        <span style="font-size:25; font-weight:bold">{{ commments.user }}</span>
+                                        <br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;{{ commments.content }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                     <form action="{% url 'board:comment' board.pk %}" method="POST">
                         {% csrf_token %}
-                        <input type="text" class="detail_comment" name="content" maxlength="20" required="" id="id_title" placeholder="댓글을 남겨보세요">
-                        <input type="submit" class="btn btn-secondary detail_button" value="작성"></button>
-                    </form>
-                    <div id="paging">
-                        <ul class="pagination justify-content-center" style="margin-top: 2rem; display:flex;">
-                            <!-- 이전페이지 -->
-                            {% if page_obj.has_previous %}
+                        <input type="text"
+                               class="detail_comment"
+                               name="content"
+                               maxlength="20"
+                               required=""
+                               id="id_title"
+                               placeholder="댓글을 남겨보세요">
+                        <input type="submit" class="btn btn-secondary detail_button" value="작성">
+                    </button>
+                </form>
+                <div id="paging">
+                    <ul class="pagination justify-content-center"
+                        style="margin-top: 2rem;
+                               display:flex">
+                        <!-- 이전페이지 -->
+                        {% if page_obj.has_previous %}
                             <li class="page-item">
                                 <a class="page-link" href="?&page={{ page_obj.previous_page_number }}">이전</a>
                                 <!-- href로 뎁스 설정 -->
                             </li>
-                            {% else %}
+                        {% else %}
                             <li class="page-item disabled">
                                 <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
                             </li>
-                            {% endif %}
-        
-        
-                            <!-- 페이지리스트 -->
-                            {% for page_number in page_obj.paginator.page_range %}
+                        {% endif %}
+                        <!-- 페이지리스트 -->
+                        {% for page_number in page_obj.paginator.page_range %}
                             {% if page_number == page_obj.number %}
-                            <li class="page-item active" aria-current="page">
-                                <a class="page-link" href="?&page={{ page_number }}">{{ page_number }}</a>
-                            </li>
+                                <li class="page-item active" aria-current="page">
+                                    <a class="page-link" href="?&page={{ page_number }}">{{ page_number }}</a>
+                                </li>
                             {% else %}
-                            <li class="page-item">
-                                <a class="page-link" href="?&page={{ page_number }}">{{ page_number }}</a>
-                            </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?&page={{ page_number }}">{{ page_number }}</a>
+                                </li>
                             {% endif %}
-                            {% endfor %}
-        
-        
-                            <!-- 다음페이지 -->
-                            {% if page_obj.has_next %}
+                        {% endfor %}
+                        <!-- 다음페이지 -->
+                        {% if page_obj.has_next %}
                             <li class="page-item">
                                 <a class="page-link" href="?&page={{ page_obj.next_page_number }}">다음</a>
                             </li>
-                            {% else %}
+                        {% else %}
                             <li class="page-item disabled">
                                 <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
                             </li>
-                            {% endif %}
-                        </ul>
-                        
-                    </div>
-
-
+                        {% endif %}
+                    </ul>
                 </div>
-                <button style="width:18%" type="button" class="btn btn-secondary detail_button" onclick="location.href='{% url 'board:index'%}'">뒤로가기</button>
-                <button style="width:18%" type="button" class="btn btn-secondary detail_button" onclick="location.href='javascript:window.history.back();'">수정하기</button>
             </div>
+            <button style="width:18%"
+                    type="button"
+                    class="btn btn-secondary detail_button"
+                    onclick="location.href='{% url 'board:index' %}'">뒤로가기</button>
+            <button style="width:18%"
+                    type="button"
+                    class="btn btn-secondary detail_button"
+                    onclick="location.href='javascript:window.history.back();'">수정하기</button>
+        </div>
     </div>
 </div>
 {% endblock %}
-
-
-
-
-

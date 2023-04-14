@@ -1,26 +1,35 @@
 {% extends 'base_accounts.html' %}
-
 {% load static %}
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/accounts/login.css' %}">
-
-<div class="login_outer">
-    <div class="border border-3 border-primary rounded-4 login_inner_1">
-        <form action="{% url 'main:main' %}" method="POST">
-            <div class="login_inner_2">
-                {% csrf_token %}
-                <input class="login_input" name="username" type="text" placeholder="아이디">
-                <br><br><br>
-                <input class="login_input" name="password" type="password" placeholder="비밀번호">
-                <br><br><br>
-                <input type="submit" class="btn btn-primary login_button" value="로그인">
-            </form>
-            <br><br><br>
-            <form action="{% url 'accounts:signup' %}" method="GET">
-                {% csrf_token %}
-                <button class="btn btn-primary login_button">회원가입</button>
-            </form>
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'css/accounts/login.css' %}">
+    <div class="login_outer">
+        <div class="border border-3 border-primary rounded-4 login_inner_1">
+            <form action="{% url 'accounts:login' %}" method="POST">
+                <div class="login_inner_2">
+                    {% csrf_token %}
+                    <input class="login_input" name="username" type="text" placeholder="아이디">
+                    <br>
+                    <br>
+                    <br>
+                    <input class="login_input"
+                           name="password"
+                           type="password"
+                           placeholder="비밀번호">
+                    <br>
+                    <br>
+                    <br>
+                    <input type="submit" class="btn btn-primary login_button" value="로그인">
+                </form>
+                <br>
+                <br>
+                <br>
+                <form action="{% url 'accounts:signup' %}" method="GET">
+                    {% csrf_token %}
+                    <button class="btn btn-primary login_button">회원가입</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}
