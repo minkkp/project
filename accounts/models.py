@@ -1,13 +1,12 @@
-from django.contrib.auth.models import AbstractBaseUser,BaseUserManager,PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
 from django.db import models 
-import datetime
+
 class UserManager(BaseUserManager):    
     use_in_migrations = True    
-    def create_user(self, user_id,password,user_area,user_living):              
+    def create_user(self, user_id,password,user_area):              
         user = self.model(            
             user_id = user_id,        
             user_area = user_area,
-            user_living = user_living,
         )        
         user.set_password(password)        
         user.save(using=self._db)        
@@ -18,7 +17,6 @@ class UserManager(BaseUserManager):
             user_id = user_id,            
             password = password,
             user_area = '',
-            user_living = '',
         )        
         print(user.user_date)
 
@@ -31,7 +29,6 @@ class User(AbstractBaseUser):
     user_id = models.CharField(primary_key=True,max_length=15, null=False, blank=False, unique=True)
     # user_pw = AbstractBaseuser에서 기본 제공    
     user_area = models.CharField(primary_key=False,max_length=15, null=True, blank=True, unique=False)
-    user_living = models.CharField(primary_key=False,max_length=15, null=True, blank=True, unique=False)
 
     is_active = models.BooleanField(default=True)    
     is_admin = models.BooleanField(default=False)    

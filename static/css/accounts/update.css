@@ -51,12 +51,8 @@ body {
 }
 
 .update_select {
-    position: absolute;
-    width: 70%;
-    height: 6%;
-    margin-bottom: 10px;
-    left: 50%;
-    transform: translate(-50%);
+    width: 34%;
+    height: 30px;
 
     border-left-width: 0;
     border-right-width: 0;
@@ -69,10 +65,4 @@ body {
     font-size: 12px;
     font-weight: bold;
     height: 1px;
-}
-
-.update_button {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
 }

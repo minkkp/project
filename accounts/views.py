@@ -3,13 +3,12 @@ from django.contrib import auth,messages
 from django.contrib.auth import authenticate
 from django.views.decorators.http import require_http_methods,require_POST
 from django.contrib.auth.hashers import check_password
+from django.contrib.auth import get_user_model
 
 from .models import User
-from .forms import CustomUserChangeForm
 
-area_list = ['서울시','부산시','고양시']
-living_list = ['단독','공동']
-
+cities = ['서울특별시','부산광역시','대구광역시','인천광역시','광주광역시','대전광역시','울산광역시','세종특별시','경기도','강원도','충청북도','충청남도','전라북도','전라남도','경상북도','경상남도','제주도']
+default_district = ['종로구','중구','용산구','성동구','광진구','동대문구','중랑구','성북구','강북구','도봉구','노원구','은평구','서대문구','마포구','양천구','강서구','구로구','금천구','영등포구','동작구','관악구','서초구','강남구','송파구','강동구']
 # 로그인
 @require_http_methods(['GET','POST'])
 def login(request):
@@ -35,30 +34,27 @@ def signup(request):
             user = User.objects.create_user(
                 user_id = request.POST['user_id'],
                 password=request.POST['password_1'],
-                user_area=request.POST['user_area'],
-                user_living = request.POST['user_living'],)  
+                user_area=request.POST['city']+"/"+request.POST['district'],)  
             auth.login(request,user)
             return redirect('main:main')
         messages.error(request,'비밀번호를 확인해주세요')
         return render(request,'accounts/signup.html')
     else:
-        return render(request,'accounts/signup.html')
+        return render(request,'accounts/signup.html',{'cities':cities,'default_district':default_district})
     
 # 회원정보 수정
 @require_http_methods(['GET','POST'])
 def update(request):
+    user = request.user
     if request.method == 'POST':
         ## 일반정보 update
-        form = CustomUserChangeForm(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()     
+        user.user_area=request.POST['city']+"/"+request.POST['district']
+        user.save()
 
         ## 패스워드 update
         origin_password = request.POST["origin_password"]
         new_password = request.POST["new_password"]
         confirm_password = request.POST["confirm_password"]
-
-        user = request.user
 
         if origin_password+new_password+confirm_password!="":
             if origin_password == "" or new_password=="" or confirm_password=="":
@@ -78,15 +74,11 @@ def update(request):
                     return redirect('main:main')
         else:
             return redirect('main:main')
-    
-    ## 화면 최초로 불러올시 Form 띄어주기
-    form = CustomUserChangeForm(instance=request.user)
-
     context = {
-        'form':form,
-        'area_list': area_list,
-        'living_list': living_list,
-        'user':request.user,
+        'city':user.user_area.split('/')[0],
+        'district':user.user_area.split('/')[1],
+        'cities': cities,
+        'user':user,
     } 
     return render(request, 'accounts/update.html', context)
 

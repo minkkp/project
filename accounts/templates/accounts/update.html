@@ -7,6 +7,7 @@
     <link rel="stylesheet"
           type="text/css"
           href="{% static 'css/accounts/update.css' %}">
+
     {% for message in messages %}
         <div class="alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center"
              role="alert">{{ message }}</div>
@@ -36,39 +37,73 @@
                     <br>
                     <br>
                     <br>
-                    <p class="update_columns">거주지역</p>
-                    <select class="update_select"
-                            name="user_area"
-                            maxlength="15"
-                            id="id_user_area">
-                        <option value={{ form.user_area.value }}>{{ form.user_area.value }}
-                        </option>
-                        {% for area in area_list %}
-                            {% if area != form.user_area.value %}<option value="{{ area }}">{{ area }}</option>{% endif %}
+
+                    <div style="display:flex; ">
+                        <span style="font-size:15px; color:blue; font-weight:bold; margin-left:16%;">시/도</span><span style="font-size:15px; color:blue; font-weight:bold; margin-left:24%">&nbsp;&nbsp;군/구</span>
+                    </div>       
+
+                    <select style="margin-left:15% "class="update_select" name="city" id="city" onchange="selected()">
+                        <option value={{ city }}>{{ city }}</option>
+                        {% for i in cities %}
+                            {% if i != city %}<option value="{{ i }}">{{ i }}</option>{% endif %}
                         {% endfor %}
+                    </select>
+                    <select class="update_select" name="district" id="district">
+                        <option value={{ district }}>{{ district }}</option>
+                    </select>
+         
+
                     </select>
                     <br>
                     <br>
-                    <p class="update_columns">거주형태</p>
-                    <select class="update_select"
-                            name="user_living"
-                            maxlength="15"
-                            id="id_user_living">
-                        <option value={{ form.user_living.value }}>{{ form.user_living.value }}
-                        </option>
-                        {% for living in living_list %}
-                            {% if living != form.user_living.value %}<option value="{{ living }}">{{ living }}</option>{% endif %}
-                        {% endfor %}
-                    </select>
-                    <br>
-                    <br>
+
                 </form>
-                    <div class="update_button">
-                        <input type="submit" class="btn btn-danger" value="회원탈퇴" onclick="javascript:document.form_delete.submit(); del()">
-                        <input type="submit" class="btn btn-primary" onclick="javascript:document.form.submit();" value="수정하기">
-                    </div>
+
+                <input style="margin-left:14%; width: 35%;" type="submit" class="btn btn-danger update_button" value="회원탈퇴" onclick="del()">
+                <input style=" width: 35%;" type="submit" class="btn btn-primary update_button" onclick="javascript:document.form.submit();" value="수정하기">
                 
             </div>
         </div>
     </div>
+
+    <script defer>
+        function del() {
+            if (confirm("정말 탈퇴하시겠습니까?")){
+                document.form_delete.submit(); 
+            }
+        }       
+        var districts={
+            서울특별시:['종로구','중구','용산구','성동구','광진구','동대문구','중랑구','성북구','강북구','도봉구','노원구','은평구','서대문구','마포구','양천구','강서구','구로구','금천구','영등포구','동작구','관악구','서초구','강남구','송파구','강동구'],
+            부산광역시:['중구','서구','동구','영도구','부산진구','동래구','남구','북구','강서구','해운대구','사하구','금정구','연제구','수영구','사상구','기장군']
+          }
+        var city_selected = document.getElementById("city").value
+        var district_selected = document.getElementById("district")
+        
+        var default_district = district_selected.value
+
+        var option = document.createElement('option');
+        option.innerText = district_selected.value
+        district_selected.length=0;
+        district_selected.append(option)
+
+        for(var i in districts[city_selected]){
+            console.log(default_district,districts[city_selected][i])
+            if(default_district!=districts[city_selected][i]){
+                var option = document.createElement('option');
+                option.innerText = districts[city_selected][i]
+                district_selected.append(option)
+            }
+
+        }            
+        function selected() {
+            var city_selected = document.getElementById("city").value
+            var district_selected = document.getElementById("district")
+            district_selected.length=0;
+            for(var i in districts[city_selected]){
+                var option = document.createElement('option');
+                option.innerText = districts[city_selected][i]
+                district_selected.append(option)
+            }         
+        }     
+    </script>
 {% endblock %}
