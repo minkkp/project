@@ -9,9 +9,9 @@
             <div class="post_inner_2">
                 <form action="{% url 'board:post' %}" method="POST">
                 {% csrf_token %}
-                <input type="text" class="post_title" name="title" maxlength="20" required="" id="id_title" placeholder="제목을 입력하세요">
+                <input type="text" class="post_title" name="qna_title" maxlength="20" required="" id="id_title" placeholder="제목을 입력하세요">
                 <hr>
-                <textarea class="post_content" name="content" cols="40" rows="13" required="" id="id_content" placeholder="내용을 입력하세요"></textarea>
+                <textarea class="post_content" name="qna_content" cols="40" rows="13" required="" id="id_content" placeholder="내용을 입력하세요"></textarea>
                 <button type="button" class="btn btn-secondary post_button" onclick="location.href='javascript:window.history.back();'">뒤로가기</button>
                 <button type="submit" class="btn btn-primary post_button">작성하기</button>
                 </form>
@@ -19,6 +19,7 @@
     </div>
 </div>
 {% endblock %}
+
 
 
 

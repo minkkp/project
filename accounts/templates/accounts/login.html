@@ -4,10 +4,17 @@
     <link rel="stylesheet"
           type="text/css"
           href="{% static 'css/accounts/login.css' %}">
+
+    {% for message in messages %}
+          <div class="alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center"
+               role="alert">{{ message }}</div>
+    {% endfor %}
+
     <div class="login_outer">
+        <p class="login_label">로그인</p>
         <div class="border border-3 border-primary rounded-4 login_inner_1">
-            <form action="{% url 'accounts:login' %}" method="POST">
-                <div class="login_inner_2">
+            <div class="login_inner_2">
+                <form style="display:inline;" action="{% url 'accounts:login' %}" method="POST">
                     {% csrf_token %}
                     <input class="login_input" name="username" type="text" placeholder="아이디">
                     <br>
@@ -22,13 +29,12 @@
                     <br>
                     <input type="submit" class="btn btn-primary login_button" value="로그인">
                 </form>
-                <br>
-                <br>
-                <br>
-                <form action="{% url 'accounts:signup' %}" method="GET">
+                <form style="display:inline;" action="{% url 'accounts:signup' %}" method="GET">
                     {% csrf_token %}
                     <button class="btn btn-primary login_button">회원가입</button>
                 </form>
+                <br><br>
+                <button style="width:60%" class="btn btn-secondary" onclick="location.href='{% url 'main:main' %}'">비회원 로그인</button>
             </div>
         </div>
     </div>

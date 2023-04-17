@@ -1,6 +1,10 @@
 {% extends 'base_main.html' %}
 {% load static %}
 {% block content %}
+    {% for message in messages %}
+    <div class="alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center"
+        role="alert">{{ message }}</div>
+    {% endfor %}
     <link rel="stylesheet"
           type="text/css"
           href="{% static 'css/board/index.css' %}">
@@ -24,9 +28,9 @@
                                 onmouseout="this.style.background='white'"
                                 onclick="location.href='{% url 'board:detail' board.pk %}'">
                                 <td style="width:10%">{{ board.pk }}</td>
-                                <td style="width:40%">{{ board.title }}</td>
-                                <td style="width:20%">#</td>
-                                <td style="width:30%">#</td>
+                                <td style="width:40%">{{ board.qna_title }}</td>
+                                <td style="width:20%">{{ board.user_id }}</td>
+                                <td style="width:30%">{{ board.qna_date|date:'Y-m-d H:i:s' }}</td>
                             </tr>
                         </tbody>
                     {% endfor %}
@@ -69,9 +73,9 @@
                             </li>
                         {% endif %}
                         <button style="position: absolute;
-                                       left: 78%"
+                                       left: 82%"
                                 type="button"
-                                class="btn btn-primary"
+                                class="btn btn-secondary"
                                 onclick="location.href='{% url 'board:post' %}'">작성하기</button>
                     </ul>
                 </div>

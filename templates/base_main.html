@@ -1,4 +1,5 @@
 {% load django_bootstrap5 %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,9 +11,25 @@
 
     {% bootstrap_css %}
     {% bootstrap_javascript %}
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+        window.setTimeout(function() {
+            $(".alert-auto-dismissible").fadeTo(500, 0).slideUp(500, function(){
+                $(this).remove();
+            });
+        }, 2000);
+        function del() {
+          if (confirm("정말 삭제하시겠습니까?"))
+            list_ok.submit();
+         }
+    </script>
     
 </head>
 <body>
+    <form name="form_logout" action="{% url 'accounts:logout' %}" method="POST"> 
+      {% csrf_token %}
+    </form>  
     <nav class="navbar navbar-expand-lg bg-primary">
         <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,12 +43,20 @@
               <li class="nav-item">
                 <a class="nav-link main_font_color" href="{% url 'board:index' %}">Q&A게시판</a>
               </li>
+              {% if request.user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link main_font_color" href="{% url 'accounts:update' %}">마이페이지</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link main_font_color" href="{% url 'accounts:logout' %}">로그아웃</a>
+                  <a class="nav-link main_font_color" onclick="javascript:document.form_logout.submit();" href="#">로그아웃</a>
+                </form>
               </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link main_font_color" onclick="location.href='{% url 'accounts:login' %}'">로그인</a>
+              </form>
+              </li>          
+              {% endif %} 
             </ul>
           </div>
         </div>

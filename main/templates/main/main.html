@@ -2,7 +2,13 @@
 
 {% load static %}
 {% block content %}
+
 <link rel="stylesheet" type="text/css" href="{% static 'css/main/main.css' %}">
+
+{% for message in messages %}
+<div class="alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center"
+     role="alert">{{ message }}</div>
+{% endfor %}
 
 <div class="main_outer">
     <div class="border border-3 border-secondary rounded-4 main_inner_1">

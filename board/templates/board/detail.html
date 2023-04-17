@@ -1,6 +1,10 @@
 {% extends 'base_main.html' %}
 {% load static %}
 {% block content %}
+{% for message in messages %}
+<div class="alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center"
+    role="alert">{{ message }}</div>
+{% endfor %}
     <link rel="stylesheet"
           type="text/css"
           href="{% static 'css/board/detail.css' %}">
@@ -11,25 +15,32 @@
                 <div class="detail_title">
                     <div style="width:33%; height:55px;"></div>
                     <div style="width:33%; margin-top:3%">
-                        <span style="text-align:left; font-size:23px; font-weight:bold;">{{ board.title }}</span>
+                        <span style="text-align:left; font-size:23px; font-weight:bold;">{{ board.qna_title }}</span>
                     </div>
                 </div>
                 <p class="detail_title"
                    style="text-align:left;
                           font-size:18px;
-                          height:20%">{{ board.content }}</p>
+                          height:20%">{{ board.qna_content }}</p>
                 <div>
                     <table class="table">
                         <tbody>
-                            {% for commments in page_obj %}
+                            {% for comments in page_obj %}
                                 <tr>
                                     <td style="text-align:left">
                                         <img style="width:15px;
                                                     height:15px"
                                              src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png">
-                                        <span style="font-size:25; font-weight:bold">{{ commments.user }}</span>
+                                        <span style="font-size:25; font-weight:bold">{{ comments.user_id }}</span><span style="font-size:1px;">&nbsp;|&nbsp;{{comments.com_date|date:'Y-m-d H:i:s' }}</span>
+                                        {% if user_id == comments.user_id %}
+                                            <form style="display:inline;" action="{% url 'board:del_com' board.pk comments.pk %}" method="POST">
+                                                {% csrf_token %}
+                                                <button type="submit" name="delete" style="font-size:5px; width:7%;" class="btn btn-danger">삭제</button>             
+                                            </form>                                        
+                                        {% endif %}                                        
+
                                         <br>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;{{ commments.content }}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;{{ comments.com_comment }}
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -44,9 +55,9 @@
                                required=""
                                id="id_title"
                                placeholder="댓글을 남겨보세요">
-                        <input type="submit" class="btn btn-secondary detail_button" value="작성">
-                    </button>
-                </form>
+                        <input type="submit" class="btn btn-secondary detail_button" value="작성">                 
+                    </form>
+
                 <div id="paging">
                     <ul class="pagination justify-content-center"
                         style="margin-top: 2rem;
@@ -91,10 +102,10 @@
                     type="button"
                     class="btn btn-secondary detail_button"
                     onclick="location.href='{% url 'board:index' %}'">뒤로가기</button>
-            <button style="width:18%"
-                    type="button"
-                    class="btn btn-secondary detail_button"
-                    onclick="location.href='javascript:window.history.back();'">수정하기</button>
+
+            {% if user_id == board.user_id %}
+                <button style="width:18%" class="btn btn-secondary detail_button" onclick="location.href='{% url 'board:update' board.pk%}'">수정하기</button>
+            {% endif %}
         </div>
     </div>
 </div>
