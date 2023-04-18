@@ -1,0 +1,31 @@
+{% extends 'base_main.html' %}
+
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/main/result.css' %}">
+
+{% for message in messages %}
+<div class="alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center"
+     role="alert">{{ message }}</div>
+{% endfor %}
+
+<div class="result_outer">
+    <div class="border border-3 border-secondary rounded-4 result_inner_1">
+        <div class="result_inner_2">
+
+            사진 / 결과 , 배출요령
+                 /  우리지역 재활용 배출안내
+                 / 주변 재활용센터 안내
+                 
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function up() {
+        document.upload.submit(); 
+    }
+</script>
+{% endblock %}

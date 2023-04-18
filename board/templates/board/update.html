@@ -18,10 +18,18 @@
                     <textarea class="post_content" name="qna_content" cols="40" rows="13" >{{board.qna_content}}</textarea>
                     <button type="submit" class="btn btn-primary post_button">수정하기</button>
                 </form>
-                <button type="submit" class="btn btn-danger post_button" onclick="javascript:document.form_delete.submit(); del()">삭제하기</button>
+                <button type="submit" class="btn btn-danger post_button" onclick="del()">삭제하기</button>
             </div>
     </div>
 </div>
+
+
+<script>
+    function del() {
+      if (confirm("게시물을 정말 삭제하시겠습니까?"))
+      document.form_delete.submit(); 
+     }
+</script>
 {% endblock %}
 
 

@@ -13,8 +13,19 @@
 <div class="main_outer">
     <div class="border border-3 border-secondary rounded-4 main_inner_1">
         <div class="main_inner_2">
-                <button class="btn btn-primary main_button">사진 불러오기</button>
+                <form name="upload" action="{% url 'main:result' %}" enctype="multipart/form-data" id="imageUploadForm" method="POST"> 
+                    {% csrf_token %}
+                    <label for="file"><div class="btn-upload main_button">이미지 업로드</div></label>
+                    <input type="file" name="image" accept="image/*" id="file" onchange="up();">
+                </form>
         </div>
     </div>
 </div>
+
+
+<script>
+    function up() {
+        document.upload.submit(); 
+    }
+</script>
 {% endblock %}

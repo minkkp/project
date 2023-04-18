@@ -2,13 +2,13 @@ html,body{
     height:100%
 }
 
-.main_outer {
+.result_outer {
     width : 100%;
     height: 100%;
     position: relative;
 }
 
-.main_inner_1 {
+.result_inner_1 {
     text-align: center;
     position: absolute;
     width: 60%;
@@ -18,7 +18,7 @@ html,body{
     transform: translate(-50%, -50%);
   }
 
-.main_inner_2 {
+.result_inner_2 {
     text-align: center;
     position: absolute;
     width: 100%;
@@ -27,7 +27,7 @@ html,body{
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.main_button{
+.result_button{
     position: absolute;
     width: 25%;
     height: 10%;
@@ -39,22 +39,4 @@ html,body{
 .main_font_color{
     color: white;
     font-size: 20px;
-}
-
-.btn-upload{
-    margin:auto;
-    width: 300px;
-    height: 50px;
-    color:white;
-    background: #0275d8;
-    border: 1px solid rgb(77,77,77);
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    }
-
-#file {
-display: none;
 }

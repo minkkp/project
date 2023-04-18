@@ -36,6 +36,7 @@ def signup(request):
                 password=request.POST['password_1'],
                 user_area=request.POST['city']+"/"+request.POST['district'],)  
             auth.login(request,user)
+            messages.info(request,'회원가입이 완료되었습니다')
             return redirect('main:main')
         messages.error(request,'비밀번호를 확인해주세요')
         return render(request,'accounts/signup.html')
