@@ -28,7 +28,7 @@ html,body{
     transform: translate(-50%,-50%);
 }
 .result_div1{
-    width:50%; 
+    width:75%; 
     height:100%; 
     padding: 30px;
 }
@@ -42,7 +42,7 @@ html,body{
 }
 
 img{
-    border: 3px solid gray;
+    border: 2px solid gray;
     border-radius: 50px;
     width: 100%;
     height: 100%;
