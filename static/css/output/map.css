@@ -2,32 +2,24 @@ html,body{
     height:100%
 }
 
-.result_outer {
+.map_outer {
     width : 100%;
     height: 100%;
     position: relative;
 }
 
-.result_inner_1 {
-    text-align: center;
+.map_inner_1 {
     position: absolute;
     width: 60%;
     height: 65%;
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    display:flex;
   }
 
-.result_inner_2 {
-    text-align: center;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-.result_button{
+.map_button{
     position: absolute;
     width: 25%;
     height: 10%;

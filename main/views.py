@@ -1,7 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render
 
 def main(request):
     return render(request,'main/main.html')
-
-def result(request):
-    return render(request,'main/result.html')

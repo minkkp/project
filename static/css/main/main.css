@@ -27,14 +27,6 @@ html,body{
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.main_button{
-    position: absolute;
-    width: 25%;
-    height: 10%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-}
 
 .main_font_color{
     color: white;
@@ -42,18 +34,31 @@ html,body{
 }
 
 .btn-upload{
-    margin:auto;
-    width: 300px;
-    height: 50px;
-    color:white;
-    background: #0275d8;
-    border: 1px solid rgb(77,77,77);
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
+    width: 45%;
+    height: 45%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    border: 5px dotted #0275d8;
+    border-radius: 20px;
+
+    font-size: 80px;
+    font-weight: bold;
+    color: #0275d8;
+
+    padding-top: 5%;
     }
+    
+.upload_label{
+    position: absolute;
+    top: 20%;
+    left: 41%;
+    font-size: 30px;
+    font-weight: bold;
+    font-family:'Courier New', Courier, monospace
+}
 
 #file {
 display: none;

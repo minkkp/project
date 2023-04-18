@@ -1,0 +1,27 @@
+{% extends 'base_main.html' %}
+
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/output/result.css' %}">
+
+<div class="result_outer">
+    
+    <div class="border border-3 border-secondary rou
+    nded-4 result_inner_1">
+        <div class="result_div1">
+            <img src="{{upload.img_file.url}}">
+        </div>
+        <div class="result_div2">
+            "플라스틱입니다"
+            <br>
+            <br>
+            <button class="btn btn-secondary" onclick="location.href='javascript:window.history.back();'">우리동네 재활용 안내</button>
+            <br>
+            <button class="btn btn-secondary" onclick="location.href ='{% url 'output:map' %}'">주변 재활용센터 찾기</button>
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}

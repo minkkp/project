@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'accounts',
     'main',
     'board',
+    'output',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -127,7 +128,10 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
-STATICFILES_DIRS = [BASE_DIR,"static",]
+STATICFILES_DIRS = [BASE_DIR,"static",] # 개발자가 관리하는 파일들
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media') # 사용자가 업로드한 파일 관리
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -142,3 +146,4 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
+

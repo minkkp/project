@@ -1,5 +1,4 @@
 from django.db import models
-from django.conf import settings
 
 class Board(models.Model):
     # qna_no = Board.pk // 모델의 pk와 동일
