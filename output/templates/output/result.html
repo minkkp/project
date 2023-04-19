@@ -6,20 +6,71 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/output/result.css' %}">
 
 <div class="result_outer">
-    
-    <div class="border border-3 border-secondary rou
-    nded-4 result_inner_1">
+    <p class="result_title">분석결과</p>
+    <div class="border border-3 border-secondary rounded-4 result_inner_1">
         <div class="result_div1">
             <img src="{{upload.img_file.url}}">
+            <form name="upload" action="{% url 'output:result' %}" enctype="multipart/form-data" id="imageUploadForm" method="POST"> 
+                {% csrf_token %}
+                <label for="file"><div class="btn-upload">사진 다시 가져오기</div></label>
+                <input class="result_button" type="file" name="image" accept="image/*" id="file" onchange="up();" value="zz">
+            </form>
         </div>
         <div class="result_div2">
-            "플라스틱입니다"
-            <br>
-            <br>
-            <button class="btn btn-secondary" onclick="location.href='javascript:window.history.back();'">우리동네 재활용 안내</button>
-            <br>
-            <button class="btn btn-secondary" onclick="location.href ='{% url 'output:map' %}'">주변 재활용센터 찾기</button>
+            <p>비닐입니다</p>
+            {% if request.user.is_authenticated %}
+                <button class="btn btn-primary result_button" onclick="recycle_url();"><p style="height:10px">재활용품 처리방법</p><p id="user_url" style="font-size:12px; height:1px"></p></button>
+                <br>
+                <button id="recycle_map" class="btn btn-primary result_button" onclick="location.href ='{% url 'output:map' %}'">주변 재활용센터</button>
+                <input type="hidden" id="hidden_text" value={{request.user.user_area}}>
+            {% else %}
+                <button class="btn btn-primary result_button" onclick="recycle_url();"><p style="height:10px">재활용품 처리방법</p><p id="anon_url" style="font-size:12px; height:1px"></p></button>
+                <br>
+                <button id="recycle_map" class="btn btn-primary result_button" onclick="location.href ='{% url 'output:map' %}'">주변 재활용센터</button>
+            {% endif %}
+                <br>
+
+                
         </div>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3351f0730731dce330130df0628f1cf1&libraries=services"></script>
+        <script>
+            function up() {
+                document.upload.submit(); 
+            }
+            if(document.getElementById("user_url")){
+                region = document.getElementById("hidden_text").value.split('/')
+                document.getElementById("user_url").textContent="("+region[0]+" "+region[1]+")"
+            }else{
+                var geocoder = new kakao.maps.services.Geocoder();
+                navigator.geolocation.getCurrentPosition((position) => {   
+                    // 비로로그인시 현재좌표 추출하여 행정동 반환
+                    geocoder.coord2RegionCode(position.coords.longitude,position.coords.latitude,function(result, status){
+                        if (status === kakao.maps.services.Status.OK) {               
+                            region = result[0].address_name.split(' ')
+                            document.getElementById("anon_url").textContent="("+region[0]+" "+region[1]+")"
+                        }
+                    });     
+                })
+            }
+
+            function recycle_url(){
+                if(document.getElementById("hidden_text")){
+                    region = document.getElementById("hidden_text").value.split('/')
+                    window.open(recycle_info[region[0]][region[1]]);
+                }else{
+                    var geocoder = new kakao.maps.services.Geocoder();
+                    navigator.geolocation.getCurrentPosition((position) => {   
+                        // 비로로그인시 현재좌표 추출하여 행정동 반환
+                        geocoder.coord2RegionCode(position.coords.longitude,position.coords.latitude,function(result, status){
+                            if (status === kakao.maps.services.Status.OK) {               
+                                region = result[0].address_name.split(' ')
+                                window.open(recycle_info[region[0]][region[1]]);
+                            }
+                        });     
+                    })
+                }
+            }
+        </script>
 
 
     </div>

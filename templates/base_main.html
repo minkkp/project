@@ -14,6 +14,18 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script>
+      var recycle_info={
+        서울특별시:
+        {종로구:'https://www.jongno.go.kr/Main.do?menuId=1365&menuNo=1365',
+         중구:'',
+         용산구:'',
+         성동구:'',         
+        },
+        부산광역시:
+        {
+          동래구:'http://www.naver.com'
+        }
+      }
         window.setTimeout(function() {
             $(".alert-auto-dismissible").fadeTo(500, 0).slideUp(500, function(){
                 $(this).remove();

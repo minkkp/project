@@ -1,13 +1,22 @@
 html,body{
     height:100%
 }
-.map_label {
+.map_title {
     text-align: center;
     font-size: 25px;
-    font-weight: 1000;
+    font-weight: bold;
     position: absolute;
     left: 50%;
-    top: 7%;
+    top: 6%;
+    transform: translate(-50%);
+}
+.map_region {
+    text-align: center;
+    color:purple;
+    font-size: 15px;
+    position: absolute;
+    left: 50%;
+    top: 10%;
     transform: translate(-50%);
 }
 .map_outer {
@@ -24,15 +33,6 @@ html,body{
     left: 50%;
     transform: translate(-50%, -50%);
   }
-
-.map_button{
-    position: absolute;
-    width: 25%;
-    height: 10%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-}
 
 .main_font_color{
     color: white;
