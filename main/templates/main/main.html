@@ -4,6 +4,7 @@
 {% block content %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/main/main.css' %}">
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
 {% for message in messages %}
 <div class="alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center"
@@ -11,13 +12,16 @@
 {% endfor %}
 
 <div class="main_outer">
+    <div class="loader">
+        <i class='bx bx-loader bx-spin'></i>
+    </div>
     <div class="border border-3 border-secondary rounded-4 main_inner_1">
         <div class="main_inner_2">
                 <form name="upload" action="{% url 'output:result' %}" enctype="multipart/form-data" id="imageUploadForm" method="POST"> 
                     {% csrf_token %}
                     <p class="upload_label">사진 가져오기</p>
                     <label for="file"><div class="btn-upload">+<div></label>
-                    <input type="file" name="image" accept="image/*" id="file" onchange="up();">
+                    <input type="file" name="image" accept="image/*" id="file" onchange="up(); load();">
                 </form>
         </div>
     </div>
@@ -25,6 +29,22 @@
 
 
 <script>
+    const loader = document.querySelector('.loader');
+    const html = document.querySelector('html');
+    html.style.overflow = 'hidden'; 
+    
+        function load(){
+        loader.style.display='inline';
+        setTimeout(() => { //로딩속도 구현
+           loader.style.opacity = '0';
+           html.style.overflow = 'auto'; //스크롤 방지 해제     
+               setTimeout(() => {
+                 loader.style.display = 'none';
+             }, 400);        
+         }, 4000);
+        }
+    
+   
     function up() {
         document.upload.submit(); 
     }

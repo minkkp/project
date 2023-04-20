@@ -27,6 +27,7 @@ body {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: rgb(240, 240, 240);
 }
 
 .signup_inner_2 {
@@ -41,11 +42,11 @@ body {
 .signup_input {
     position: absolute;
     width: 70%;
-    height: 14%;
+    height: 12%;
     margin-bottom: 10px;
     left: 50%;
     transform: translate(-50%);
-
+    border: 1px solid black;
     border-left-width: 0;
     border-right-width: 0;
     border-top-width: 0;
@@ -59,5 +60,5 @@ body {
     border-left-width: 0;
     border-right-width: 0;
     border-top-width: 0;
-    border-bottom-width: 2px;
+    border-bottom-width: 1px;
 }

@@ -25,6 +25,7 @@ html,body{
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: rgb(240, 240, 240);
   }
 
 .login_inner_2 {
@@ -39,14 +40,15 @@ html,body{
 .login_input{
     position: absolute;
     width: 70%;
-    height: 23%;
+    height: 20%;
     left: 50%;   
     transform: translate(-50%);
+    border: 1px solid black;
 
     border-left-width:0;
     border-right-width:0;
     border-top-width:0;
-    border-bottom-width:2;
+    border-bottom-width:1;
 }
 .login_button{
     position: relative;

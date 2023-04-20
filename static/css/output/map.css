@@ -12,8 +12,9 @@ html,body{
 }
 .map_region {
     text-align: center;
-    color:purple;
+    color:blue;
     font-size: 15px;
+    font-weight: bold;
     position: absolute;
     left: 50%;
     top: 10%;
@@ -32,6 +33,7 @@ html,body{
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: rgb(245, 255, 255);
   }
 
 .main_font_color{
@@ -43,11 +45,11 @@ html,body{
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {position:relative;width:100%;height:100%;}
-#menu_wrap {overflow-y:auto;width:33%; height:95%; margin-left:10px;margin-top:12px;position:absolute;top:0;left:0;bottom:0;overflow-y:none;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:11px;}
-.bg_white {background:#fff;}
+#menu_wrap {padding-right: 5px; background-color: rgb(245, 255, 255); overflow-y:auto;width:33%; height:95%; margin-left:10px;margin-top:12px;position:absolute;top:0;left:0;bottom:0;right:0;overflow-y:none;z-index: 1;font-size:11px;}
 #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
 #menu_wrap .option{text-align: center;}
-#placesList li {list-style: none; margin-top: 6px;height: 110px; padding-left: 7px;padding-top: 7px;}
+#placesList {background-color: rgb(245, 255, 255);}
+#placesList li {background-color: lightgoldenrodyellow; border: 1px solid black; list-style: none; margin-top: 6px;height: 110px; padding-left: 7px;padding-top: 7px;}
 #placesList .item {position:relative;overflow: hidden;cursor: pointer;}
 #placesList .item span {display: block;margin-top:4px;}
 #placesList .item h5, #placesList .item .info {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}

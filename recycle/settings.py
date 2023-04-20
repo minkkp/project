@@ -126,12 +126,13 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+
+# STATIC - 웹서버에 사전업로드해서 사용자에게 배포하는 파일, 개발자가 관리
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
-STATICFILES_DIRS = [BASE_DIR,"static",] # 개발자가 관리하는 파일들
+STATICFILES_DIRS = [BASE_DIR /'static'] 
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media') # 사용자가 업로드한 파일 관리
+MEDIA_ROOT = os.path.join(BASE_DIR,'media') # 사용자가 업로드한 파일들
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

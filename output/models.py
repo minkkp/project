@@ -6,3 +6,4 @@ class Upload(models.Model):
     img_name = models.CharField(max_length=128,null=False)
     img_file = models.ImageField(upload_to="images/", blank=True)
     update_date = models.DateTimeField(auto_now_add=True,null=False)
+    threshold = models.BooleanField(default=False)

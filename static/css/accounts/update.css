@@ -26,12 +26,13 @@ body {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: rgb(240, 240, 240);
 }
 
 .update_inner_2 {
     position: absolute;
     width: 100%;
-    top: 45%;
+    top: 48%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -43,6 +44,8 @@ body {
     margin-bottom: 10px;
     left: 50%;
     transform: translate(-50%);
+
+    border: 1px solid black;
 
     border-left-width: 0;
     border-right-width: 0;

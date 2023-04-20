@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/output/result.css' %}">
 
 <div class="result_outer">
-    <p class="result_title">분석결과</p>
+    <p class="result_title"></p>
     <div class="border border-3 border-secondary rounded-4 result_inner_1">
         <div class="result_div1">
             <img src="{{upload.img_file.url}}">
@@ -17,7 +17,7 @@
             </form>
         </div>
         <div class="result_div2">
-            <p>비닐입니다</p>
+            <p id="info"></p>
             {% if request.user.is_authenticated %}
                 <button class="btn btn-primary result_button" onclick="recycle_url();"><p style="height:10px">재활용품 처리방법</p><p id="user_url" style="font-size:12px; height:1px"></p></button>
                 <br>
@@ -34,10 +34,11 @@
         </div>
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3351f0730731dce330130df0628f1cf1&libraries=services"></script>
         <script>
+
             var recycle_info={
                 서울특별시:
                 {
-                종로구:'https://www.jongno.go.kr/Main.do?menuId=1365&menuNo=1365',
+                 종로구:'https://www.jongno.go.kr/Main.do?menuId=1365&menuNo=1365',
                  중구:'http://www.junggu.seoul.kr/content.do?cmsid=14189',
                  용산구:'https://www.yongsan.go.kr/portal/main/contents.do?menuNo=200887',
                  광진구:'https://www.gwangjin.go.kr/portal/main/contents.do?menuNo=200842', 
@@ -313,6 +314,50 @@
         
                 }
               }
+            var detect = JSON.parse("{{detect|escapejs}}");
+
+            {% comment %} 0:'가구',1:'금속',2:'나무',3:'도기류',4:'비닐',5:'스티로폼',6:'유리',7:'의류',8:'자전거',9:'전자제품',10:'종이',11:'캔',12:'페트병',13:'플라스틱',14:'형광등' {% endcomment %}
+            var info = ""
+            var except = ""
+            for(let i=0; i<detect.length; i++){
+              if(detect[i]>0){
+                  switch(i){
+                    case 4:
+                    info +="<p class='info'>[비닐류]</p>라면스프 등 이물질이 묻지 않은 상태로 큰 투명 비닐 봉투 필름류만 따로 배출";
+                    break;
+                    case 5:
+                    info +="<p class='info'>[스티로폼]</p>흩날리지 않게 묶어서 배출"
+                    break;
+                    case 6:
+                    info +="<p class='info'>[유리]</p>병뚜껑 제거 후 내용물을 모두 비우고 물로 한번 헹궈 배출"
+                    break;
+                    case 7:
+                    info +="<p class='info'>[의류]</p>가죽, 신발, 벨트, 헌옷 등은 근처 의류수거함에 배출하시거나 불우한 이웃에 기증해 주세요"
+                    break;
+                    case 10:
+                    info +="<p class='info'>[종이]</p>스프링 제거, 박스 등 포장재는 전표, 테이프 등 이물질 제거후 끈으로 묶어서 배출"
+                    break;
+                    case 11:
+                    info +="<p class='info'>[캔류]</p>내용물을 비우고 물로 한번 헹군 후 배출 부탄가스 용기는 반드시 구멍을 뚫어 내용물을 비운 후 배출(폭발 위험)";
+                    break;
+                    case 12:
+                    info +="<p class='info'>[페트병]</p>내용물을 비우고 라벨을 제거한 후찌그려트려서 분리 배출"
+                    break;
+                    case 13:
+                    info +="<p class='info'>[플라스틱]</p>내용물을 비우고 다른 재질의 뚜껑 및 부착상표를 제거한 후 배출"
+                    break;
+                    case 14:
+                    info +="<p class='info'>[형광등]</p>단독주택: 가까운 동주민센터에 배출<br>아파트: 관리사무소 및 단지 내 수거함에 배출"
+                    break;
+                    default:
+                    except = "<p class='info'>[재활용 불가]</p>대형생활폐기물은 별도 신고후 배출<br>폐가전제품은 동주민센터/아파트 단지내 배출"
+                    break;
+                  }
+                }
+              }
+            document.getElementById("info").innerHTML=info+except
+            
+
             function up() {
                 document.upload.submit(); 
             }
@@ -335,7 +380,7 @@
             function recycle_url(){
                 if(document.getElementById("hidden_text")){
                     region = document.getElementById("hidden_text").value.split('/')
-                    window.open(recycle_info[region[0]][region[1]],'','top=50%, left=50%, width=1024, height=768, status=no, menubar=no, toolbar=no, resizable=no');
+                    window.open(recycle_info[region[0]][region[1]],'','top=0, left=0, width=1024, height=768, status=no, menubar=no, toolbar=no, resizable=no');
                 }else{
                     var geocoder = new kakao.maps.services.Geocoder();
                     navigator.geolocation.getCurrentPosition((position) => {   
@@ -343,7 +388,7 @@
                         geocoder.coord2RegionCode(position.coords.longitude,position.coords.latitude,function(result, status){
                             if (status === kakao.maps.services.Status.OK) {               
                                 region = result[0].address_name.split(' ')
-                                window.open(recycle_info[region[0]][region[1]],'','top=100, left=100, width=1024, height=768, status=no, menubar=no, toolbar=no, resizable=no');
+                                window.open(recycle_info[region[0]][region[1]],'','top=0, left=0, width=1024, height=768, status=no, menubar=no, toolbar=no, resizable=no');
                             }
                         });     
                     })
