@@ -27,7 +27,7 @@ def plot(img,pred):
     for i,box in enumerate(pred[0].boxes.boxes):
         plot_img = ImageDraw.Draw(img)
         plot_img.rectangle((int(box[0]),int(box[1]),int(box[2]),int(box[3])),outline=(51,255,51),width=5)
-        plot_img.text(xy=(int(box[0]),int(box[1])-35),text=labels[int(pred[0].boxes.cls[i])],fill=(255,0,0),font=ImageFont.truetype("fonts/gulim.ttc",30),align='center',stroke_width=2,stroke_fill=(255,255,255))
+        plot_img.text(xy=(int(box[0]),int(box[1])-35),text=labels[int(pred[0].boxes.cls[i])],fill=(255,0,0),font=ImageFont.truetype("arial.ttf",30),align='center',stroke_width=2,stroke_fill=(255,255,255))
           
     output = BytesIO()
     img.save(output, format='JPEG', quality=100)
