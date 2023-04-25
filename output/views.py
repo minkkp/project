@@ -23,11 +23,11 @@ def check_cls(pred):
 
 def plot(img,pred):
     labels={0:'가구',1:'금속',2:'나무',3:'도기류',4:'비닐',5:'스티로폼',6:'유리',7:'의류',8:'자전거',9:'전자제품',10:'종이',11:'캔',12:'페트병',13:'플라스틱',14:'형광등'}
-    
+    font = ImageFont.load_default()
     for i,box in enumerate(pred[0].boxes.boxes):
         plot_img = ImageDraw.Draw(img)
         plot_img.rectangle((int(box[0]),int(box[1]),int(box[2]),int(box[3])),outline=(51,255,51),width=5)
-        plot_img.text(xy=(int(box[0]),int(box[1])-35),text=labels[int(pred[0].boxes.cls[i])],fill=(255,0,0),font=ImageFont.truetype("arial.ttf",30),align='center',stroke_width=2,stroke_fill=(255,255,255))
+        plot_img.text(xy=(int(box[0]),int(box[1])-35),text=labels[int(pred[0].boxes.cls[i])],fill=(255,0,0),font=font,align='center',stroke_width=2,stroke_fill=(255,255,255))
           
     output = BytesIO()
     img.save(output, format='JPEG', quality=100)
