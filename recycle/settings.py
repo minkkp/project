@@ -27,9 +27,6 @@ SECRET_KEY = 'django-insecure-wd4jy(nkz60v=pz-+ha@!k^qwmmqwg$bwt5*e2omw=$s5i^dut
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -140,7 +137,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media') # 사용자가 업로드한 파일�
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.User'
 
-ALLOWED_HOSTS = ['54.150.82.106']
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
