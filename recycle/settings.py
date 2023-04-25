@@ -130,7 +130,7 @@ USE_TZ = False
 
 # STATIC - 웹서버에 사전업로드해서 사용자에게 배포하는 파일, 개발자가 관리
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR /'static'] 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media') # 사용자가 업로드한 파일들
