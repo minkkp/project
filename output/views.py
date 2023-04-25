@@ -42,7 +42,6 @@ def result(request):
         img = Image.open(request.FILES.get('image'))
         img = Image.Image.resize(img,(640,640))
         pred = model.predict(img)
-        
 
         upload = Upload( 
             user_id = request.user,
