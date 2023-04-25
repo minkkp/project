@@ -140,6 +140,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media') # 사용자가 업로드한 파일�
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.User'
 
+ALLOWED_HOSTS = ['54.150.82.106']
+
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
     messages.INFO: 'alert-info',
