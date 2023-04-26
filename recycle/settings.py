@@ -28,6 +28,7 @@ SECRET_KEY = 'django-insecure-wd4jy(nkz60v=pz-+ha@!k^qwmmqwg$bwt5*e2omw=$s5i^dut
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    ".ap-northeast-2.compute.amazonaws.com",
     ".aiteam2.shop",
 ]
 
