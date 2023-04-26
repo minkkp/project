@@ -316,7 +316,6 @@
               }
             var detect = JSON.parse("{{detect|escapejs}}");
 
-            {% comment %} 0:'가구',1:'금속',2:'나무',3:'도기류',4:'비닐',5:'스티로폼',6:'유리',7:'의류',8:'자전거',9:'전자제품',10:'종이',11:'캔',12:'페트병',13:'플라스틱',14:'형광등' {% endcomment %}
             var info = ""
             var except = ""
             for(let i=0; i<detect.length; i++){
@@ -367,7 +366,7 @@
             }else{
                 var geocoder = new kakao.maps.services.Geocoder();
                 navigator.geolocation.getCurrentPosition((position) => {   
-                    // 비로로그인시 현재좌표 추출하여 행정동 반환
+                    // 비로그인시 현재좌표 추출하여 행정동 반환
                     geocoder.coord2RegionCode(position.coords.longitude,position.coords.latitude,function(result, status){
                         if (status === kakao.maps.services.Status.OK) {               
                             region = result[0].address_name.split(' ')

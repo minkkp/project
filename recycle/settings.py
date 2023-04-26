@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-wd4jy(nkz60v=pz-+ha@!k^qwmmqwg$bwt5*e2omw=$s5i^dut
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "13.124.15.250"
+    ".aiteam2.shop",
 ]
 
 # Application definition
