@@ -42,11 +42,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media') # 사용자가 업로드한 파일들
 
 
-
-
-
-
-
 # Application definition
 
 INSTALLED_APPS = [
