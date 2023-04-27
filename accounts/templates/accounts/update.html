@@ -21,7 +21,8 @@
                 <form name="form"action="{% url 'accounts:update' %}" method="POST">
                     {% csrf_token %}
                     <p class="update_columns">ID</p>
-                    <input style="border-bottom-width:0;"class="update_input" type="text" name="user_id" placeholder={{ user }} disabled>
+                    <input style="border-bottom-width:0; background-color:white;"class="update_input" type="text" name="user_id" placeholder={{ user }} disabled>
+                    <br>
                     <br>
                     <br>
                     <p class="update_columns">현재 비밀번호</p>

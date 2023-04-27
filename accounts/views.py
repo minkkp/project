@@ -3,7 +3,6 @@ from django.contrib import auth,messages
 from django.contrib.auth import authenticate
 from django.views.decorators.http import require_http_methods,require_POST
 from django.contrib.auth.hashers import check_password
-from django.contrib.auth import get_user_model
 
 from .models import User
 

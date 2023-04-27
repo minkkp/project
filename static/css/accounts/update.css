@@ -45,12 +45,10 @@ body {
     left: 50%;
     transform: translate(-50%);
 
-    border: 1px solid black;
-
     border-left-width: 0;
     border-right-width: 0;
     border-top-width: 0;
-    border-bottom-width: 1;
+    border-bottom-width: 1px;
 }
 
 .update_select {
@@ -60,7 +58,7 @@ body {
     border-left-width: 0;
     border-right-width: 0;
     border-top-width: 0;
-    border-bottom-width: 2px;
+    border-bottom-width: 1px;
 }
 
 .update_columns {
