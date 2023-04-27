@@ -29,8 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     ".ap-northeast-2.compute.amazonaws.com",
-    "www.aiteam2.shop",
-    "3.39.24.60",
+    ".aiteam2.shop",
 ]
 
 # Application definition
