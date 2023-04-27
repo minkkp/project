@@ -98,11 +98,11 @@
                 for ( var i=0; i<10; i++ ) {
                     // 마커를 생성하고 지도에 표시합니다
                     
-                    {% comment %} var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
-                        marker = addMarker(placePosition, i), 
-                        itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다 {% endcomment %}
+                    // var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
+                    // marker = addMarker(placePosition, i), 
+                    // itemEl = getListItem(i, places[i]); 
 
-                    var placePosition = new kakao.maps.LatLng(126.9786567,37.566826),
+                    placePosition = new kakao.maps.LatLng(126.9786567,37.566826),
                     marker = addMarker(placePosition, i), 
                     itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
             
