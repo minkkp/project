@@ -12,18 +12,21 @@ default_district = ['종로구','중구','용산구','성동구','광진구','�
 # 로그인
 @require_http_methods(['GET','POST'])
 def login(request):
-    if request.method =='POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request,username=username,password=password)
-        if user is not None:
-            auth.login(request,user)
-            return redirect('main/')
-        else:
-            messages.error(request,'아이디와 비밀번호를 확인해주세요')
-            return render(request,'accounts/login.html')
+    if request.user.is_authenticated:
+         return redirect('main:main')
     else:
-        return render(request,'accounts/login.html')
+        if request.method =='POST':
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(request,username=username,password=password)
+            if user is not None:
+                auth.login(request,user)
+                return redirect('main/')
+            else:
+                messages.error(request,'아이디와 비밀번호를 확인해주세요')
+                return render(request,'accounts/login.html')
+        else:
+            return render(request,'accounts/login.html')
 
 
 # 회원가입
