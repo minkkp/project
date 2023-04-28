@@ -1,4 +1,9 @@
 {% extends 'base_accounts.html' %} {% load static %} {% block content %}
+
+{% for message in messages %}
+<div class="alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center"
+    role="alert">{{ message }}</div>
+{% endfor %}
 <link
   rel="stylesheet"
   type="text/css"
@@ -28,6 +33,7 @@
           name="user_id"
           type="text"
           placeholder="아이디"
+          required=""
         />
         <br />
         <br />
@@ -37,6 +43,7 @@
           name="password_1"
           type="password"
           placeholder="비밀번호"
+          required=""
         />
         <br />
         <br />
@@ -46,6 +53,7 @@
           name="password_2"
           type="password"
           placeholder="비밀번호 확인"
+          required=""
         />
         <br />
         <br />

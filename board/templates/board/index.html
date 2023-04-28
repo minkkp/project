@@ -11,7 +11,7 @@
     <div class="index_outer">
         <p class="index_label">Q&A게시판</p>
         <div class="border border-3 border-secondary rounded-4 index_inner_1">
-            <div class="index_inner_2">
+            <div class="index_inner_2" >
                 <table class="table">
                     <thead class="table-dark">
                         <tr>
@@ -23,7 +23,7 @@
                     </thead>
                     {% for board in page_obj %}
                         <tbody>
-                            <tr style='cursor:pointer'
+                            <tr style='cursor:pointer; background-color:white;'
                                 onmouseover="this.style.background='gray'"
                                 onmouseout="this.style.background='white'"
                                 onclick="location.href='{% url 'board:detail' board.pk %}'">

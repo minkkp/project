@@ -32,16 +32,20 @@ def login(request):
 @require_http_methods(['GET','POST'])
 def signup(request):
     if request.method =='POST':
-        if request.POST['password_1'] == request.POST['password_2']:
-            user = User.objects.create_user(
-                user_id = request.POST['user_id'],
-                password=request.POST['password_1'],
-                user_area=request.POST['city']+"/"+request.POST['district'],)  
-            auth.login(request,user)
-            messages.info(request,'회원가입이 완료되었습니다')
-            return redirect('main:main')
-        messages.error(request,'비밀번호를 확인해주세요')
-        return render(request,'accounts/signup.html')
+        if User.objects.filter(user_id = request.POST["user_id"]).exists() == True:
+            messages.warning(request,'이미 존재하는 아이디입니다')
+            return render(request,'accounts/signup.html',{'cities':cities,'default_district':default_district})   
+        else:                        
+            if request.POST['password_1'] == request.POST['password_2']:
+                user = User.objects.create_user(
+                    user_id = request.POST['user_id'],
+                    password=request.POST['password_1'],
+                    user_area=request.POST['city']+"/"+request.POST['district'],)  
+                auth.login(request,user)
+                messages.info(request,'회원가입이 완료되었습니다')
+                return redirect('main:main')
+            messages.error(request,'비밀번호를 확인해주세요')
+            return render(request,'accounts/signup.html',{'cities':cities,'default_district':default_district})
     else:
         return render(request,'accounts/signup.html',{'cities':cities,'default_district':default_district})
     

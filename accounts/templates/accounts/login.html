@@ -15,14 +15,14 @@
             <div class="login_inner_2">
                 <form style="display:inline;" action="{% url 'accounts:login' %}" method="POST">
                     {% csrf_token %}
-                    <input class="login_input" name="username" type="text" placeholder="아이디">
+                    <input class="login_input" name="username" type="text" placeholder="아이디" required="">
                     <br>
                     <br>
                     <br>
                     <input class="login_input"
                            name="password"
                            type="password"
-                           placeholder="비밀번호">
+                           placeholder="비밀번호" required="">
                     <br>
                     <br>
                     <br>

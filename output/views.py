@@ -40,7 +40,7 @@ def result(request):
         model = YOLO('static/model/v8m_ep75.pt')
      
         img = Image.open(request.FILES.get('image'))
-        img = Image.Image.resize(img,(300,300)).convert('RGB')
+        img = Image.Image.resize(img,(640,640)).convert('RGB')
         pred = model.predict(img)
 
         upload = Upload( 

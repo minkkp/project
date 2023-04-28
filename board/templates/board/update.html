@@ -13,9 +13,9 @@
             <div class="post_inner_2">
                 <form style="display:inline;" action="{% url 'board:update' board.pk%}" method="POST">
                     {% csrf_token %}    
-                    <input type="text" class="post_title" name="qna_title" maxlength="20" value={{board.qna_title}}>
+                    <input style="border: 1px solid black; border-radius:10px" type="text" class="post_title" name="qna_title" maxlength="20" value={{board.qna_title}}>
                     <hr>
-                    <textarea class="post_content" name="qna_content" cols="40" rows="13" >{{board.qna_content}}</textarea>
+                    <textarea style="border-radius:10px;" class="post_content" name="qna_content" cols="40" rows="13" >{{board.qna_content}}</textarea>
                     <button type="submit" class="btn btn-primary post_button">수정하기</button>
                 </form>
                 <button type="submit" class="btn btn-danger post_button" onclick="del()">삭제하기</button>

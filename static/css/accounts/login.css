@@ -25,7 +25,7 @@ html,body{
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(223, 223, 223);
   }
 
 .login_inner_2 {
@@ -48,7 +48,8 @@ html,body{
     border-left-width:0;
     border-right-width:0;
     border-top-width:0;
-    border-bottom-width:1;
+    border-bottom-width:0;
+    border-radius: 5px;
 }
 .login_button{
     position: relative;
