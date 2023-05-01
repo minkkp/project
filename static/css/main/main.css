@@ -16,7 +16,7 @@ html,body{
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgb(240, 240, 240);
+    background-color: white;
   }
 
 .main_inner_2 {
@@ -27,6 +27,7 @@ html,body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    
 }
 
 .main_font_color{
@@ -84,3 +85,5 @@ display: none;
     margin: -40px 0 0 -40px;
     color: #fff;
   }
+
+  

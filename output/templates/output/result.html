@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/output/result.css' %}">
 <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
-<div class="result_outer">
+<div class="result_outer background">
     <div class="loader">
       <i class='bx bx-loader bx-spin'></i>
     </div>
@@ -401,11 +401,10 @@
                 }else{
                     var geocoder = new kakao.maps.services.Geocoder();
                     navigator.geolocation.getCurrentPosition((position) => {   
-                        // 비로그인시 현재좌표 추출하여 행정동 반환
                         geocoder.coord2RegionCode(position.coords.longitude,position.coords.latitude,function(result, status){
                             if (status === kakao.maps.services.Status.OK) {               
                                 region = result[0].address_name.split(' ')
-                                window.open(recycle_info[region[0]][region[1]],'','top=0, left=0, width=1024, height=768, status=no, menubar=no, toolbar=no, resizable=no');
+                                window.open(recycle_info[region[0]][region[1]]);
                             }
                         });     
                     })

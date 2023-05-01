@@ -9,6 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>계정</title>
 
+    <style>
+        .background{
+          background: url({% static 'image/unfocused-field.jpg' %}) no-repeat center fixed;
+          background-size: cover;
+          height: 100vh;
+        }
+    </style>
+
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     
@@ -46,5 +54,6 @@
 <body>
     {% block content %}
     {% endblock content %}
+    </div>
 </body>
 </html>

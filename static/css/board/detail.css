@@ -26,7 +26,7 @@ html,body{
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgb(242, 255, 235);
+    background-color: rgb(240, 240, 240);
 
   }
 
@@ -59,6 +59,7 @@ html,body{
     border: 2px solid black;
     border-radius: 5px;
     width: 100%;
+    font-size:50px;
     display: flex;
     
 }

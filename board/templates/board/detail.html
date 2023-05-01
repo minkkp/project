@@ -8,7 +8,7 @@
     <link rel="stylesheet"
           type="text/css"
           href="{% static 'css/board/detail.css' %}">
-    <div class="detail_outer">
+    <div class="detail_outer background">
         <p class="detail_label">Q&A게시판</p>
         <div class="border border-3 border-secondary rounded-4 detail_inner_1">
             <div class="detail_inner_2">
@@ -22,7 +22,8 @@
 
                 <p class="detail_content"
                    style="text-align:left;
-                          font-size:18px;
+                          padding-left:8px;
+                          font-size:28px;
                           height:20%">{{ board.qna_content }}</p>
                 <div>
                     <table class="table">

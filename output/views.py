@@ -11,7 +11,7 @@ from json import dumps
 
 def check_thr(pred):
     for index in range(len(pred[0].boxes.conf)):
-        if float(pred[0].boxes.conf[index])<0.5:    
+        if float(pred[0].boxes.conf[index])<0.8:    
             return False
     return True
 
@@ -37,22 +37,26 @@ def plot(img,pred):
 @require_http_methods(['GET','POST'])
 def result(request):
     if request.method=='POST':    
-        model = YOLO('static/model/v8m_ep75.pt')
-     
+
         img = Image.open(request.FILES.get('image'))
         img = Image.Image.resize(img,(640,640)).convert('RGB')
-        pred = model.predict(img)
+
+
+        model = YOLO('static/model/v8m_best.pt')
+        pred = model.predict(img,conf=0.7)
+
 
         upload = Upload( 
             user_id = request.user,
             img_file = plot(img,pred),
             threshold=check_thr(pred)
         )
-
     upload.save()   
-    context={'upload':upload,
-             'detect':dumps(check_cls(pred))}
+
+
+    context={'upload':upload,'detect':dumps(check_cls(pred))}
     return render(request,'output/result.html',context)
+
 
 @require_http_methods(['GET','POST'])
 def map(request):
