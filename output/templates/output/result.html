@@ -404,7 +404,7 @@
                         geocoder.coord2RegionCode(position.coords.longitude,position.coords.latitude,function(result, status){
                             if (status === kakao.maps.services.Status.OK) {               
                                 region = result[0].address_name.split(' ')
-                                window.open(recycle_info[region[0]][region[1]]);
+                                window.open(recycle_info[region[0]][region[1]],'','top=0, left=0, width=1024, height=768, status=no, menubar=no, toolbar=no, resizable=no');
                             }
                         });     
                     })
